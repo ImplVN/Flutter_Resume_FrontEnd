@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume/common/routes/names.dart';
 import 'package:resume/pages/home/home_page.dart';
+import 'package:resume/pages/register/bloc/register_blocs.dart';
+import 'package:resume/pages/register/register.dart';
 import 'package:resume/pages/sign_in/bloc/sign_in_blocs.dart';
 import 'package:resume/pages/sign_in/sign_in.dart';
 
@@ -14,6 +16,10 @@ class AppPages {
           route: AppRoutes.SIGN_IN,
           page: const SignIn(),
           bloc: BlocProvider(create: (_) => SignInBloc())),
+      PageEntity(
+          route: AppRoutes.REGISTER,
+          page: const Register(),
+          bloc: BlocProvider(create: (_) => RegisterBloc())),
       PageEntity(
         route: AppRoutes.HOME,
         page: const HomePage(),

@@ -50,7 +50,9 @@ class _SignInState extends State<SignIn> {
                       buildLoginAndRegButton('ログイン', 'login', () {
                         SignInController(context: context).handleSignIn();
                       }),
-                      buildLoginAndRegButton('登録', 'register', () {}),
+                      buildLoginAndRegButton('登録', 'register', () {
+                        Navigator.of(context).pushNamed('/register');
+                      }),
                     ],
                   ),
                 )
