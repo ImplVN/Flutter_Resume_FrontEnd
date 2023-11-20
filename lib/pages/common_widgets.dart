@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:resume/common/values/colors.dart';
+import 'package:resume/common/values/values.dart';
 
 AppBar buildAppBar(String title) {
   return AppBar(

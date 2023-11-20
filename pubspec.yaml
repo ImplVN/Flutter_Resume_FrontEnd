@@ -40,6 +40,12 @@ dependencies:
   flutter_screenutil: ^5.9.0
   firebase_core: ^2.21.0
   firebase_auth: ^4.12.1
+  responsive_builder: ^0.7.0
+  layout: ^1.0.5
+  google_fonts: ^6.1.0
+  font_awesome_flutter: ^10.6.0
+  flutter_feather_icons: ^2.0.0+1
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:
@@ -67,3 +73,15 @@ flutter:
     - assets/
     - assets/images/
     - assets/icons/
+    - assets/images/projects/
+    - assets/images/projects/aerium-v1/
+    - assets/images/projects/aerium-v2/
+    - assets/images/projects/disneyplus/
+    - assets/images/projects/drop/
+    - assets/images/projects/flutter_catalog/
+    - assets/images/projects/foodybite/
+    - assets/images/projects/login_catalog/
+    - assets/images/projects/nimbus/
+    - assets/images/projects/otp_package/
+    - assets/images/projects/roam/
+    - assets/images/projects/outfitr/
