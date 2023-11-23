@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:resume/common/layout/adaptive.dart';
+import 'package:resume/common/utils/functions.dart';
 import 'package:resume/common/values/values.dart';
 import 'package:resume/common/widgets/animated_footer.dart';
 import 'package:resume/common/widgets/animated_positioned_text.dart';
@@ -232,7 +233,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             title: data[index].title.toLowerCase(),
             subtitle: data[index].category,
             containerColor: data[index].primaryColor,
-            onTap: () {},
+            onTap: () {
+              Functions.navigateToProject(
+                context: context,
+                dataSource: data,
+                currentProject: data[index],
+                currentProjectIndex: index,
+              );
+            },
           ),
         ),
       );
@@ -256,7 +264,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           title: data[index].title.toLowerCase(),
           subtitle: data[index].category,
           containerColor: data[index].primaryColor,
-          onTap: () {},
+          onTap: () {
+            Functions.navigateToProject(
+              context: context,
+              dataSource: data,
+              currentProject: data[index],
+              currentProjectIndex: index,
+            );
+          },
         ),
       );
       items.add(const CustomSpacer(

@@ -10,7 +10,7 @@ class AnimatedBubbleButton extends StatefulWidget {
     this.titleStyle,
     this.startWidth = 50,
     this.height = 50,
-    this.targetWidth = 150,
+    this.targetWidth = 200,
     this.startBorderRadius = const BorderRadius.all(Radius.circular(80.0)),
     this.endBorderRadius,
     this.curve = Curves.easeIn,
