@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:resume/common/layout/adaptive.dart';
 import 'package:resume/common/values/values.dart';
 
-AppBar buildAppBar(String title) {
+AppBar buildAppBar(BuildContext context, String title) {
+  final fontSize = responsiveSize(context, 16.sp, 20, md: 20);
   return AppBar(
     bottom: PreferredSize(
       preferredSize: const Size.fromHeight(1.0),
@@ -15,7 +17,7 @@ AppBar buildAppBar(String title) {
       title,
       style: TextStyle(
         color: Colors.black,
-        fontSize: 16.sp,
+        fontSize: fontSize,
         fontWeight: FontWeight.normal,
       ),
     ),
@@ -47,24 +49,24 @@ Widget _reusableIcons(String iconName) {
   );
 }
 
-Widget reusableText(String text) {
+Widget reusableText(BuildContext context, String text) {
+  final fontSize = responsiveSize(context, 14.sp, 20, md: 20);
   return Container(
-    margin: EdgeInsets.only(bottom: 5.h),
+    margin: const EdgeInsets.only(bottom: 5),
     child: Text(
       text,
       style: TextStyle(
         color: Colors.grey.withOpacity(0.5),
-        fontSize: 14.sp,
+        fontSize: fontSize,
         fontWeight: FontWeight.normal,
       ),
     ),
   );
 }
 
-Widget buildTextField(String hintText, String textType, String iconName,
-    void Function(String value)? func) {
+Widget buildTextField(BuildContext context, String hintText, String textType,
+    String iconName, void Function(String value)? func) {
   return Container(
-    width: 325.w,
     height: 50.h,
     margin: EdgeInsets.only(bottom: 20.h),
     decoration: BoxDecoration(
@@ -79,11 +81,11 @@ Widget buildTextField(String hintText, String textType, String iconName,
         Container(
           width: 16.w,
           height: 16.w,
-          margin: EdgeInsets.only(left: 17.w),
+          margin: const EdgeInsets.only(left: 17),
           child: Image.asset('assets/icons/$iconName.png'),
         ),
-        SizedBox(
-          width: 270.w,
+        Container(
+          width: responsiveSize(context, 220.w, assignWidth(context, 0.35)),
           height: 50.h,
           child: TextField(
             onChanged: (value) => func!(value),
@@ -104,14 +106,14 @@ Widget buildTextField(String hintText, String textType, String iconName,
               hintText: hintText,
               hintStyle: TextStyle(
                 color: Colors.grey.withOpacity(0.5),
-                fontSize: 14.sp,
+                fontSize: responsiveSize(context, 14.sp, 16, md: 16),
                 fontWeight: FontWeight.normal,
               ),
             ),
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Avenir',
-              fontSize: 12.sp,
+              fontSize: responsiveSize(context, 12.sp, 14, md: 14),
               fontWeight: FontWeight.normal,
             ),
             obscureText: textType == 'password' ? true : false,
@@ -143,8 +145,8 @@ Widget forgotPassword() {
   );
 }
 
-Widget buildLoginAndRegButton(
-    String buttonName, String type, void Function()? func) {
+Widget buildLoginAndRegButton(BuildContext context, String buttonName,
+    String type, void Function()? func) {
   return GestureDetector(
     onTap: func,
     child: Container(
@@ -170,7 +172,7 @@ Widget buildLoginAndRegButton(
         buttonName,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 16.sp,
+          fontSize: responsiveSize(context, 16.sp, 20, md: 20),
           fontWeight: FontWeight.normal,
         ),
       )),
