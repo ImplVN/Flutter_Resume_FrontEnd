@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:resume/common/layout/adaptive.dart';
+import 'package:resume/common/routes/routes.dart';
 import 'package:resume/common/values/values.dart';
 import 'package:resume/common/widgets/nav_item.dart';
 import 'package:resume/common/widgets/spaces.dart';
@@ -161,7 +162,15 @@ class _AppDrawerState extends State<AppDrawer>
           },
           child: NavItem(
             controller: widget.controller,
-            onTap: () {},
+            onTap: () {
+              if (menuList[index].route == AppRoutes.HOME) {
+                Navigator.of(context).pushNamed(
+                  menuList[index].route,
+                );
+              } else {
+                Navigator.of(context).pushNamed(menuList[index].route);
+              }
+            },
             index: index + 1,
             route: menuList[index].route,
             title: menuList[index].name,

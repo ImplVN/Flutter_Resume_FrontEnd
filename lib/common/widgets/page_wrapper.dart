@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resume/common/layout/adaptive.dart';
+import 'package:resume/common/routes/names.dart';
 import 'package:resume/common/values/values.dart';
 import 'package:resume/common/widgets/app_drawer.dart';
 import 'package:resume/common/widgets/empty.dart';
@@ -125,7 +126,16 @@ class _PageWrapperState extends State<PageWrapper>
               forwardSlideController.forward();
               forwardSlideController.addStatusListener((status) {
                 if (status == AnimationStatus.completed) {
-                  // TODO: add navigation arguments
+                  if (route == AppRoutes.HOME) {
+                    Navigator.of(context).pushNamed(
+                      route,
+                      arguments: NavigationArguments(
+                        showUnVeilPageAnimation: true,
+                      ),
+                    );
+                  } else {
+                    Navigator.of(context).pushNamed(route);
+                  }
                 }
               });
             },
