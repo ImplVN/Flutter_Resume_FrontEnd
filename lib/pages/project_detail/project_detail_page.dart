@@ -127,7 +127,7 @@ class _ProjectDetailPageState extends State<ProjectDetailPage>
       backgroundColor: AppColors.white,
       selectedRoute: AppRoutes.PROJECT_DETAIL,
       hasSideTitle: false,
-      selectedPageName: StringConst.PROJECT,
+      selectedPageName: StringConst.PROJECT_DETAIL,
       navBarAnimationController: _controller,
       navBarTitleColor: projectDetails.data.navTitleColor,
       navBarSelectedTitleColor: projectDetails.data.navSelectedTitleColor,

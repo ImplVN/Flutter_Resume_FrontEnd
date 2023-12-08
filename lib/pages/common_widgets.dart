@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:resume/common/layout/adaptive.dart';
+import 'package:resume/common/utils/functions.dart';
 import 'package:resume/common/values/values.dart';
+import 'package:resume/common/widgets/custom_spacer.dart';
+import 'package:resume/common/widgets/project_item.dart';
 
 AppBar buildAppBar(BuildContext context, String title) {
   final fontSize = responsiveSize(context, 16.sp, 20, md: 20);
@@ -178,4 +181,74 @@ Widget buildLoginAndRegButton(BuildContext context, String buttonName,
       )),
     ),
   );
+}
+
+List<Widget> buildProjects({
+  required BuildContext context,
+  required List<ProjectItemData> data,
+  required int projectHeight,
+  required int subHeight,
+}) {
+  List<Widget> items = [];
+  int margin = subHeight * (data.length - 1);
+  for (int index = data.length - 1; index >= 0; index--) {
+    items.add(
+      Container(
+        margin: EdgeInsets.only(top: margin.toDouble()),
+        child: ProjectItemLg(
+          projectNumber: index + 1 > 9 ? "${index + 1}" : "0${index + 1}",
+          imageUrl: data[index].image,
+          projectItemheight: projectHeight.toDouble(),
+          subheight: subHeight.toDouble(),
+          backgroundColor: AppColors.accentColor2.withOpacity(0.35),
+          title: data[index].title.toLowerCase(),
+          subtitle: data[index].category,
+          containerColor: data[index].primaryColor,
+          onTap: () {
+            Functions.navigateToProject(
+              context: context,
+              dataSource: data,
+              currentProject: data[index],
+              currentProjectIndex: index,
+            );
+          },
+        ),
+      ),
+    );
+    margin -= subHeight;
+  }
+  return items;
+}
+
+List<Widget> buildProjectsForMobile({
+  required BuildContext context,
+  required List<ProjectItemData> data,
+  required int projectHeight,
+  required int subHeight,
+}) {
+  List<Widget> items = [];
+
+  for (int index = 0; index < data.length; index++) {
+    items.add(
+      ProjectItemSm(
+        projectNumber: index + 1 > 9 ? "${index + 1}" : "0${index + 1}",
+        imageUrl: data[index].image,
+        title: data[index].title.toLowerCase(),
+        subtitle: data[index].category,
+        containerColor: data[index].primaryColor,
+        onTap: () {
+          Functions.navigateToProject(
+            context: context,
+            dataSource: data,
+            currentProject: data[index],
+            currentProjectIndex: index,
+          );
+        },
+      ),
+    );
+    items.add(const CustomSpacer(
+      heightFactor: 0.10,
+    ));
+  }
+  return items;
 }

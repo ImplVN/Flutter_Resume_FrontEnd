@@ -103,68 +103,74 @@ class _PageWrapperState extends State<PageWrapper>
       }
     });
 
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: widget.backgroundColor,
-      drawer: AppDrawer(
-        controller: widget.navBarAnimationController,
-        menuList: Data.menuItems,
-        selectedItemRouteName: widget.selectedRoute,
-      ),
-      body: Stack(
-        children: [
-          widget.child,
-          NavBar(
-            selectedRouteTitle: widget.selectedPageName,
+    return Container(
+      color: widget.backgroundColor ?? AppColors.white,
+      child: SafeArea(
+        bottom: false,
+        child: Scaffold(
+          key: _scaffoldKey,
+          backgroundColor: widget.backgroundColor,
+          drawer: AppDrawer(
             controller: widget.navBarAnimationController,
-            selectedRouteName: widget.selectedRoute,
-            hasSideTitle: widget.hasSideTitle,
-            appLogoColor: widget.appLogoColor,
-            titleColor: widget.navBarTitleColor,
-            selectedTitleColor: widget.navBarSelectedTitleColor,
-            onNavItemWebTap: (String route) {
-              forwardSlideController.forward();
-              forwardSlideController.addStatusListener((status) {
-                if (status == AnimationStatus.completed) {
-                  if (route == AppRoutes.HOME) {
-                    Navigator.of(context).pushNamed(
-                      route,
-                      arguments: NavigationArguments(
-                        showUnVeilPageAnimation: true,
-                      ),
-                    );
+            menuList: Data.menuItems,
+            selectedItemRouteName: widget.selectedRoute,
+          ),
+          body: Stack(
+            children: [
+              widget.child,
+              NavBar(
+                selectedRouteTitle: widget.selectedPageName,
+                controller: widget.navBarAnimationController,
+                selectedRouteName: widget.selectedRoute,
+                hasSideTitle: widget.hasSideTitle,
+                appLogoColor: widget.appLogoColor,
+                titleColor: widget.navBarTitleColor,
+                selectedTitleColor: widget.navBarSelectedTitleColor,
+                onNavItemWebTap: (String route) {
+                  forwardSlideController.forward();
+                  forwardSlideController.addStatusListener((status) {
+                    if (status == AnimationStatus.completed) {
+                      if (route == AppRoutes.HOME) {
+                        Navigator.of(context).pushNamed(
+                          route,
+                          arguments: NavigationArguments(
+                            showUnVeilPageAnimation: true,
+                          ),
+                        );
+                      } else {
+                        Navigator.of(context).pushNamed(route);
+                      }
+                    }
+                  });
+                },
+                onMenuTap: () {
+                  if (_scaffoldKey.currentState!.isEndDrawerOpen) {
+                    _scaffoldKey.currentState?.openEndDrawer();
                   } else {
-                    Navigator.of(context).pushNamed(route);
+                    _scaffoldKey.currentState?.openDrawer();
                   }
-                }
-              });
-            },
-            onMenuTap: () {
-              if (_scaffoldKey.currentState!.isEndDrawerOpen) {
-                _scaffoldKey.currentState?.openEndDrawer();
-              } else {
-                _scaffoldKey.currentState?.openDrawer();
-              }
-            },
+                },
+              ),
+              LoadingSlider(
+                controller: forwardSlideController,
+                width: widthOfScreen(context),
+                height: heightOfScreen(context),
+              ),
+              widget.hasUnveilPageAnimation
+                  ? Positioned(
+                      right: 0,
+                      child: LoadingSlider(
+                        controller: unveilPageSlideController,
+                        curve: Curves.fastOutSlowIn,
+                        width: widthOfScreen(context),
+                        height: heightOfScreen(context),
+                        isSlideForward: false,
+                      ),
+                    )
+                  : widget.customLoadingAnimation,
+            ],
           ),
-          LoadingSlider(
-            controller: forwardSlideController,
-            width: widthOfScreen(context),
-            height: heightOfScreen(context),
-          ),
-          widget.hasUnveilPageAnimation
-              ? Positioned(
-                  right: 0,
-                  child: LoadingSlider(
-                    controller: unveilPageSlideController,
-                    curve: Curves.fastOutSlowIn,
-                    width: widthOfScreen(context),
-                    height: heightOfScreen(context),
-                    isSlideForward: false,
-                  ),
-                )
-              : widget.customLoadingAnimation,
-        ],
+        ),
       ),
     );
   }

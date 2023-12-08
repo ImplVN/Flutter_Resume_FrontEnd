@@ -104,9 +104,9 @@ class SubMenuData {
 
 class Data {
   static List<NavItemData> menuItems = [
-    NavItemData(name: StringConst.HOME, route: StringConst.HOME_PAGE),
+    NavItemData(name: StringConst.HOME, route: AppRoutes.HOME),
     NavItemData(name: StringConst.ABOUT, route: StringConst.ABOUT_PAGE),
-    NavItemData(name: StringConst.WORKS, route: StringConst.WORKS_PAGE),
+    NavItemData(name: StringConst.PROJECTS, route: AppRoutes.PROJECT_LIST),
     NavItemData(
       name: StringConst.EXPERIENCE,
       route: StringConst.EXPERIENCE_PAGE,

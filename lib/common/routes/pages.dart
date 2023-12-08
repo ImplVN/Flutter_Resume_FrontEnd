@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resume/common/routes/names.dart';
 import 'package:resume/pages/home/home_page.dart';
 import 'package:resume/pages/project_detail/project_detail_page.dart';
+import 'package:resume/pages/project_list/project_list_page.dart';
 import 'package:resume/pages/register/bloc/register_blocs.dart';
 import 'package:resume/pages/register/register.dart';
 import 'package:resume/pages/sign_in/bloc/sign_in_blocs.dart';
@@ -28,6 +29,10 @@ class AppPages {
       PageEntity(
         route: AppRoutes.PROJECT_DETAIL,
         page: const ProjectDetailPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.PROJECT_LIST,
+        page: const ProjectListPage(),
       ),
     ];
   }

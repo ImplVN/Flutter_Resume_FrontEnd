@@ -8,9 +8,9 @@ class StringConst {
 
   static const String HOME = "ホーム";
   static const String ABOUT = "自己紹介";
-  static const String WORKS = "プロジェクト";
+  static const String PROJECTS = "プロジェクト";
   static const String EXPERIENCE = "経験";
-  static const String PROJECT = "Project";
+  static const String PROJECT_DETAIL = "プロジェクト詳細";
   static const String WORK = "Where I've Worked";
   static const String SERVICES = "Services";
   static const String CONTACT = "Contact";

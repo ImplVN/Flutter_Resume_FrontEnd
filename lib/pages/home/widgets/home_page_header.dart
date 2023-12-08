@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:resume/common/layout/adaptive.dart';
+import 'package:resume/common/routes/names.dart';
 import 'package:resume/common/values/values.dart';
 import 'package:resume/common/widgets/animated_bubble_button.dart';
 import 'package:resume/common/widgets/animated_flipping_icon.dart';
@@ -389,7 +390,7 @@ class _AboutDevState extends State<AboutDev> {
               fontWeight: FontWeight.w500,
             ),
             onTap: () {
-              // TODO: implement onTap
+              Navigator.pushNamed(context, AppRoutes.PROJECT_LIST);
             },
           ),
         ),
